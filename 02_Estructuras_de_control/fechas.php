@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fechas</title>
+    <?php
+        error_reporting( E_ALL );
+        ini_set( "display_errors", 1);
+    ?>
 </head>
 <body>
     <?php
@@ -45,7 +49,7 @@
         NO TENEMOS EL RESTO
 
         HACER UN SWITCH QUE SI HOY TENEMOS CLASE
-     */
+    
     switch($dia){
         case "Monday":
         case "Wednesday":
@@ -55,6 +59,74 @@
         default:
             echo "<p>NO TENEMOS CLASE</p>";
     }
+
+
+        CON UNA ESTRUCTURA SWITCH LO MAS OPTIMA POSIBLE HACER EL EJERCICIO ANTERIOR EN ESPAÑOL
+    
+
+    switch($dia){
+        case "Monday":
+        case "Wednesday":
+        case "Friday":
+            echo "<p>SI TENEMOS CLASE</p>";
+            break;
+        default:
+            echo "<p>NO TENEMOS CLASE</p>";
+    }
+    */
+
+    $dia_espanol = null;
+    switch($dia){
+		case "Monday":
+			$dia_espanol = "Lunes";
+			break;
+        case "Tuesday":
+            $dia_espanol = "Martes";
+            break;
+        case "Wednesday":
+            $dia_espanol = "Miercoles";
+            break;
+        case "Thursday":
+            $dia_espanol = "Jueves";
+            break;
+        case "Friday":
+            $dia_espanol = "Viernes";
+            break;
+        case "Saturday":
+            $dia_espanol = "Sábado";
+            break;
+        case "Sunday":
+            $dia_espanol = "Domingo";
+            break;
+    } 
+
+    $clase = null;
+    switch($clase){
+        case "Monday":
+        case "Wednesday":
+        case "Friday":
+            $clase = " si tenemos clase.";
+            break;
+        default:
+            $clase = " no tenemos clase.";
+    }
+
+    echo "Hoy es  $dia_espanol y $clase"; 
+    
+    $dia_espanol = match($dia){
+        "Monday" => "Lunes",
+        "Tuesday" => "Martes",
+        "Wednesday" => "Miercoles",
+        "Thursday" => "Jueves",
+        "Friday" => "Viernes",
+        "Saturday" => "Sábado",
+        "Sunday" => "Domingo"
+    };
+    /*El equivalente a match es
+        if($dia == "Monday"){
+            $dia_espanol = Lunes;
+        }
+    */
     ?>
 </body>
 </html>

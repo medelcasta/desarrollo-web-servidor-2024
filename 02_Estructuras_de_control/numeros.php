@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Números</title>
+    <?php
+        error_reporting( E_ALL );
+        ini_set( "display_errors", 1);
+    ?>
 </head>
 <body>
     <?php
@@ -76,6 +80,17 @@
     elseif($numero_aleatorio < 100 && $numero_aleatorio >= 10) $digitos = 2;
     elseif($numero_aleatorio < 1000 && $numero_aleatorio >= 100) $digitos = 3;
     else $digitos = "ERROR";
+
+    // VERSION CON MATCH 
+
+    $resultado = match(true){
+        $numero_aleatorio >= 1 && $numero_aleatorio <= 9 => 1,
+        $numero_aleatorio >= 10 && $numero_aleatorio <= 99 => 2,
+        $numero_aleatorio >= 100 && $numero_aleatorio <= 999 => 3,
+        default => "ERROR"
+    };
+
+    echo "<h1>El numero $numero_aleatorio tiene $digitos digitos </h1>";
     /*
     #FORMA2
     if($numero_aleatorio < 10){
@@ -101,7 +116,9 @@
     echo "El numero tiene $digitos $digitos_texto";
     echo "El numero $numero_aleatorio tiene $digitos $digitos_texto";
     echo "</p>";
+
     $n = rand(1,3);
+
     switch($n){
         case 1:
             echo "El numero es 1";
@@ -112,6 +129,16 @@
         default:
             echo "El numero es 3";
     }
+
+    $resultado = match($n){
+        1 => "El numero es 1", 
+        2 => "El numero es 2", 
+        3 => "El numero es 3", 
+    };
+
+    echo "<h3>$resultado</h3>"
+
+    /*OJO EN EL SWITCH NO SE PUEDEN HACER COMPARACIONES LOGICAS */
     ?>
 </body>
 </html>
