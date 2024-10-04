@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EJERCICIOS</title>
+    <?php
+        error_reporting( E_ALL );
+        ini_set( "display_errors", 1);
+    ?>
     <link rel="stylesheet"  type= "text/css" href="estilos.css">
 </head>
 <body>
@@ -31,7 +35,6 @@ $profes = [
 ];
 ?>
 <table>
-    <caption>Asignaturas</caption>
     <thead>
         <tr>
             <th>ID</th>
@@ -40,9 +43,16 @@ $profes = [
     </thead>
     <tbody>
         <?php
-            foreach($profes as $id => $profe){
+           //sort($profes); --> te reseta las claves ordena alfabeticamente
+           //rsort($profes); --> te reseta las claves ordena desdendente 
+           //asort($profes); --> te ordena por orden alfabetico los valor
+           //arsort($profes); --> te ordena por orden desdente los valor
+           //ksort($profes); -->te ordena por orden alfabetico las clave
+
+
+            foreach($profes as $asignatura => $profe){
                 echo "<tr>";
-                echo "<td>$id</td>";
+                echo "<td>$asignatura</td>";
                 echo "<td>$profe</td>";
                 echo "</tr>"; 
             } 
@@ -82,11 +92,11 @@ $profes = [
     </thead>
     <tbody>
         <?php
-            foreach($alumnos as $nombre=> $nota){ 
+            foreach($alumnos as $alumno=> $nota){ 
                 echo "<tr>";
-                echo "<td>$nombre</td>";
+                echo "<td>$alumno</td>";
                 echo "<td>$nota</td>";
-                if($nota > 5 && $nota < 10){ ?>
+                if($nota >= 5 && $nota < 10){ ?>
                     <td class="aprobado"><?php echo"Aprobado"; ?> </td>
                 <?php }else if($nota == 10){ ?>
                     <td class="matricula"><?php echo"Matricula"; ?></td>
@@ -98,5 +108,18 @@ $profes = [
            <?php } ?>
     </tbody>
 </table>
+/*
+        Insertar dos nuevos estudiantes, con notas aleatorias entre 0 y 10
+
+        Borrar un estudiante (el que peor os caiga) por curl_multi_remove_handle
+        
+        Mostrar en una tabla todo ordenado por los nombres en orden alfabeticamente 
+        inverso
+
+        Mostrar en una tabla todo ordenado por la nota de 10 a 0 (orden inverso)
+
+*/
+
+
 </body>
 </html>
