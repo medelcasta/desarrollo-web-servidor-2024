@@ -48,6 +48,7 @@ $profes = [
            //asort($profes); --> te ordena por orden alfabetico los valor
            //arsort($profes); --> te ordena por orden desdente los valor
            //ksort($profes); -->te ordena por orden alfabetico las clave
+           //ksort($profes); -->te ordena por orden descendente las clave
 
 
             foreach($profes as $asignatura => $profe){
@@ -72,15 +73,6 @@ $profes = [
             - COLUMNA 2: NOTA
             - COLUMNA 3: SI NOTA < 5, SUSPENSO, ELSE APROBADO
         -->
-<?php 
-    $alumnos = [
-        "Francisco" => 2,
-        "Aurora" => 10,
-        "Daniel" => 5,
-        "Luis" => 7,
-        "Samuel" => 9,
-    ];
-?>
 <table>
     <caption>Notas</caption>
     <thead>
@@ -119,7 +111,65 @@ $profes = [
         Mostrar en una tabla todo ordenado por la nota de 10 a 0 (orden inverso)
 
 */
+<?php 
+    
+    $nota1 = rand(1,10);
+    $nota2 = rand(1,10);
 
+    $estudiantes = [
+        "Francis"=> 3,
+        "Aurora"=> 10,
+        "Dani"=> 7,
+        "Samu"=> 9,
+        "Vicente"=> 2,
+        "Ismael"=> 5,
+    ];
+
+    $estudiantes['Paula'] = $nota1;
+    $estudiantes['Carlos'] = $nota2;
+
+    print_r($estudiantes);
+
+    unset($estudiantes['Francis']);
+    print_r($estudiantes);
+?>
+<table>
+    <thead>
+        <tr>
+            <td>Nombre</td>
+            <td>Nota</td>
+        </tr>
+    </thead>
+    <tbody>
+        <?php 
+            krsort($estudiantes);
+            foreach($estudiantes as $estudiante){
+                echo "<tr>";
+                echo "<td>$estudiante</td>";
+                echo "</tr>";
+            }
+        ?>
+    </tbody>
+</table>
+
+<table>
+    <thead>
+        <tr>
+            <td>Nombre</td>
+            <td>Nota</td>
+        </tr>
+    </thead>
+    <tbody>
+        <?php 
+            arsort($estudiantes);
+            foreach($estudiantes as $estudiante){
+                echo "<tr>";
+                echo "<td>$estudiante</td>";
+                echo "</tr>";
+            }
+        ?>
+    </tbody>
+</table>
 
 </body>
 </html>

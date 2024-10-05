@@ -187,6 +187,7 @@ echo "</ol>";
     </thead>
     <tbody>
         <?php
+        
             foreach($animales as $id => $animal) { ?>
                 <tr>
                     <td><?php echo $id?></td>
