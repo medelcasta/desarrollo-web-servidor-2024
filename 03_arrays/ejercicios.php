@@ -84,7 +84,7 @@ $profes = [
     </thead>
     <tbody>
         <?php
-            foreach($alumnos as $alumno=> $nota){ 
+            foreach($alumnos as $alumno => $nota){ 
                 echo "<tr>";
                 echo "<td>$alumno</td>";
                 echo "<td>$nota</td>";
@@ -112,10 +112,6 @@ $profes = [
 
 */
 <?php 
-    
-    $nota1 = rand(1,10);
-    $nota2 = rand(1,10);
-
     $estudiantes = [
         "Francis"=> 3,
         "Aurora"=> 10,
@@ -125,8 +121,8 @@ $profes = [
         "Ismael"=> 5,
     ];
 
-    $estudiantes['Paula'] = $nota1;
-    $estudiantes['Carlos'] = $nota2;
+    $estudiantes['Paula'] = rand(1,10);
+    $estudiantes['Carlos'] = rand(1,10);
 
     print_r($estudiantes);
 
@@ -134,6 +130,7 @@ $profes = [
     print_r($estudiantes);
 ?>
 <table>
+    <caption>Estudiantes ordenados por el nombre al revés</caption>
     <thead>
         <tr>
             <td>Nombre</td>
@@ -143,9 +140,10 @@ $profes = [
     <tbody>
         <?php 
             krsort($estudiantes);
-            foreach($estudiantes as $estudiante){
+            foreach($estudiantes as $estudiante => $nota){
                 echo "<tr>";
                 echo "<td>$estudiante</td>";
+                echo "<td>$nota</td>";
                 echo "</tr>";
             }
         ?>
@@ -153,6 +151,7 @@ $profes = [
 </table>
 
 <table>
+    <caption>Estudiantes ordenados de menor a mayor nota</caption>
     <thead>
         <tr>
             <td>Nombre</td>
@@ -162,9 +161,10 @@ $profes = [
     <tbody>
         <?php 
             arsort($estudiantes);
-            foreach($estudiantes as $estudiante){
+            foreach($estudiantes as $estudiante => $nota){
                 echo "<tr>";
                 echo "<td>$estudiante</td>";
+                echo "<td>$nota</td>";
                 echo "</tr>";
             }
         ?>
