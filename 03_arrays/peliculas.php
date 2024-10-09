@@ -39,7 +39,7 @@
      *      3) TITULO (TODO ALFABETICAMENTE Y EL AÑO DE MAS RECIENTE A MAS ANTIGUO
      */
 
-     for($i = 0; $i < count($peliculas); $i++){
+    for($i = 0; $i < count($peliculas); $i++){
         $peliculas[$i][3] = rand(30,240);
     }
     for($i = 0; $i < count($peliculas); $i++){
@@ -52,10 +52,11 @@
     } 
     
 
-    $_tipo = array_column($peliculas, 1);
+    $_genero = array_column($peliculas, 1);
     $_anio = array_column($peliculas, 2);
     $_titulo = array_column($peliculas, 0);
-    array_multisort($_tipo, SORT_ASC, 
+    
+    array_multisort($_genero, SORT_ASC, 
                     $_anio, SORT_DESC,
                     $_titulo, SORT_ASC,
                     $peliculas);
@@ -64,22 +65,22 @@
     <thead>
         <tr>
             <td>Titulo</td>
-            <td>Tipo</td>
+            <td>Genero</td>
             <td>Año</td>
             <td>Duración</td>
-            <td>Que es</td>
+            <td>Categoria</td>
         </tr>
     </thead>
     <tbody>
         <?php 
         foreach($peliculas as $pelicula){
-            list($nombre, $tipo, $anio, $duracion, $quees) = $pelicula;
+            list($nombre, $genero, $anio, $duracion, $categoria) = $pelicula;
             echo "<tr>";
             echo "<td>$nombre</td>";
-            echo "<td>$tipo</td>";
+            echo "<td>$genero</td>";
             echo "<td>$anio</td>";
             echo "<td>$duracion</td>";
-            echo "<td>$quees</td>";
+            echo "<td>$categoria</td>";
             echo "</tr>";
         }
         ?>
@@ -90,18 +91,22 @@
     <thead>
         <tr>
             <td>Titulo</td>
-            <td>Tipo</td>
+            <td>Genero</td>
             <td>Año</td>
+            <td>Duración</td>
+            <td>Categoria</td>
         </tr>
     </thead>
     <tbody>
         <?php 
         foreach($peliculas as $pelicula){
-            list($nombre, $tipo, $anio) = $pelicula;?>
+            list($nombre, $genero, $anio, $duracion, $categoria) = $pelicula;?>
             <tr>
             <td><?php echo $nombre ?></td>
-            <td><?php echo $tipo ?></td>
+            <td><?php echo $genero ?></td>
             <td><?php echo $anio ?></td>
+            <td><?php echo $duracion ?></td>
+            <td><?php echo $categoria ?></td>
             </tr>
        <?php } 
         ?>
