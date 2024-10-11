@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <?php
+        error_reporting( E_ALL );
+        ini_set( "display_errors", 1);
+    ?>
 </head>
 <body>
     <!--    crea un formulario que reciba un numero  se mostrará la tabla 
@@ -16,12 +20,12 @@
     <?php 
                 
                 if($_SERVER["REQUEST_METHOD"] == "POST"){
-                    $numero = $_POST["numero"];
+                    $numero =(int) $_POST["numero"];
                     for($i = 1; $i<= 10; $i++){ 
                         //hago un array para almacenar los resultados de la multiplicacion
                         $resultados[$i] = $numero *$i;
                     } ?>
-                <table>
+                <table border=2>
                     <thead>
                         <tr>
                             <th>Tabla</th>

@@ -7,7 +7,7 @@
 </head>
 <body>
     <?php 
-    $paises = array( "Italy"=>"Rome", "Luxembourg" =>"Luxembourg" , "Belgium"=>
+    $paises = ["Italy"=>"Rome", "Luxembourg" =>"Luxembourg" , "Belgium"=>
     "Brussels" , "Denmark"=>"Copenhagen" , "Finland"=>"Helsinki" , "France" =>
     "Paris", "Slovakia" =>"Bratislava" , "Slovenia" =>"Ljubljana" , "Germany" =>
     "Berlin", "Greece" => "Athens", "Ireland"=>"Dublin",
@@ -15,7 +15,7 @@
     "Sweden"=>"Stockholm" , "United Kingdom" =>"London", "Cyprus"=>"Nicosia",
     "Lithuania" =>"Vilnius", "Czech Republic" =>"Prague", "Estonia"=>"Tallin",
     "Hungary"=>"Budapest" , "Latvia"=>"Riga", "Malta"=>"Valetta", "Austria" =>
-    "Vienna", "Poland"=>"Warsaw") ;
+    "Vienna", "Poland"=>"Warsaw"];
     ?>
     <table>
         <thead>
