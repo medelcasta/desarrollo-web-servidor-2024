@@ -10,6 +10,7 @@
     ?>
 </head>
 <body>
+    <h3>Calcula el mayor de 3 numeros</h3>
     <form action="" method="post">
         <label for="num1">Numero 1:</label>
         <input type="text" name="num1" id="num1">
