@@ -22,7 +22,7 @@
             <option value="fahrenheit">Fahrenheit</option>
             <option value="kelvin">Kelvin</option>
         </select>
-        <input type="submit" value="Calcular"> </p>
+        <input type="submit" value="Convertir"> </p>
     </form>
 
     <?php 

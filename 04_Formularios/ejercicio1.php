@@ -22,17 +22,27 @@
     </form>
 
     <?php 
+    //cuando se ejecuta este codigo --> siempre
     if($_SERVER ["REQUEST_METHOD"] == "POST"){
         $num1 = $_POST["num1"];
         $num2 = $_POST["num2"];
         $num3 = $_POST["num3"];
-        $mayor = 0;
+        $mayor = $num1;
 
-        $mayor = match(true){   
+        if($num2 > $max){
+            $max = $num2;
+        }
+
+        if($num3 > $max){
+            $max = $num3;
+        }
+
+        /*$mayor = match(true){   
             $num1 >= $num2 and $num1 >= $num2 => $num1,
             $num2 >= $num1 and $num2 >= $num3 => $num2,
-            default => $num3,
-        };
+            $num3 >= $num1 and $num3 >= $num2 => $num3,
+            
+        };*/
         echo "<p>El mayor es $mayor</p>";
     }
     
