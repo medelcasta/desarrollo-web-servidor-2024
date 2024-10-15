@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-< lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,6 +14,7 @@
         ["Futurama","Disney",16],
     ];
     ?>
+    <h1>Tabla normal</h1>
     <table>
         <thead>
             <tr>
@@ -25,16 +25,18 @@
         </thead>
         <tbody>
                 <?php foreach($series as $serie){
-                 list($titulo, $plataforma, $temporadas) = $series;?>
+                 list($titulo, $plataforma, $temporadas) = $serie;?>
                  <tr>
-                    <td><?php echo "".$titulo?></td>
-                    <td><?php echo "".$plataforma ?></td>
-                    <td><?php echo "".$temporadas?></td>
+                    <td><?php echo $titulo?></td>
+                    <td><?php echo $plataforma ?></td>
+                    <td><?php echo $temporadas?></td>
                 </tr>
                 <?php } ?>
         </tbody>
     </table>
+    <h1>Tabla ordenada por temporadas</h1>
     <?php
+    $_temporadas = array_column($series, 2);
     array_multisort($_temporadas, SORT_ASC, $series); ?>
     <table>
         <thead>
@@ -46,16 +48,20 @@
         </thead>
         <tbody>
                 <?php foreach($series as $serie){
-                 list($titulo, $plataforma, $temporadas) = $series;?>
+                 list($titulo, $plataforma, $temporadas) = $serie;?>
                  <tr>
-                    <td><?php echo "".$titulo?></td>
-                    <td><?php echo "".$plataforma ?></td>
-                    <td><?php echo "".$temporadas?></td>
+                    <td><?php echo $titulo?></td>
+                    <td><?php echo $plataforma ?></td>
+                    <td><?php echo $temporadas?></td>
                 </tr>
                 <?php } ?>
         </tbody>
     </table>
-    <?php array_multisort($_plataforma, SORT_ASC, $_titulo, SORT_ASC, $series); ?>
+    <h1>Tabla ordenada por plataforma y titulo</h1>
+    <?php 
+    $_plataforma = array_column($series, 1);
+    $_titulo = array_column($series, 0);
+    array_multisort($_plataforma, SORT_ASC, $_titulo, SORT_ASC, $series); ?>
     <table>
         <thead>
             <tr>
@@ -66,7 +72,7 @@
         </thead>
         <tbody>
                 <?php foreach($series as $serie){
-                 list($titulo, $plataforma, $temporadas) = $series;?>
+                 list($titulo, $plataforma, $temporadas) = $serie;?>
                  <tr>
                     <td><?php echo "".$titulo?></td>
                     <td><?php echo "".$plataforma ?></td>

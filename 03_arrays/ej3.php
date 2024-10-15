@@ -17,7 +17,7 @@
     "Hungary"=>"Budapest" , "Latvia"=>"Riga", "Malta"=>"Valetta", "Austria" =>
     "Vienna", "Poland"=>"Warsaw"];
     ?>
-    <table>
+    <table border="1">
         <thead>
             <tr>
                 <td>Pais</td>
@@ -29,11 +29,8 @@
             foreach ($paises as $pais => $capital) { ?>
             <tr>
                 <td><?php echo $pais?></td>
-            </tr>
-            <tr>
                 <td><?php echo $capital?></td>
             </tr>
-
             <?php } ?>
         </tbody>
     </table>

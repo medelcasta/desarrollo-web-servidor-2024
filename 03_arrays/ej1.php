@@ -13,11 +13,21 @@
             $pares[] = $i;
         }
     }
+    echo "<h1>Barajados</h1>";
     shuffle($pares);
-    print_r($pares);
-
+    echo"<ul>";
+    foreach ($pares as $par) {
+        echo "<li>$par</li>";
+    }
+    echo"</ul";
+echo "<br>";
+    echo "<h1>Ordenados</h1>";
     arsort($pares);
-    print_r($pares);
+    echo"<ul>";
+    foreach ($pares as $par) {
+        echo "<li>$par</li>";
+    }
+    echo"</ul";
     
     ?>
 </body>
