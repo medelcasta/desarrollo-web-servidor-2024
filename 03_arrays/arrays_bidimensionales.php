@@ -26,10 +26,10 @@
 
     array_push($videojuegos, ["Ender Lilies", "Metroidvania", 9.95]);
 
-    //unset($videojuegos[3]);
+    unset($videojuegos[3]);
     //los indices no se quedan bien es recomendable hacer 
-    //$videojuegos = array_values($videojuegos);
-    //print_r($videojuegos);
+    $videojuegos = array_values($videojuegos);
+    print_r($videojuegos);
 
     array_push($videojuegos, ["Dota 2", "MOBA", 0]);
     array_push($videojuegos, ["Fall Guys", "Plataforma", 0]);
