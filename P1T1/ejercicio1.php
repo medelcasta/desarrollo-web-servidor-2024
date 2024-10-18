@@ -19,7 +19,7 @@
         array_push($animes, ["Frieren", "Fantasía"]);
 
         unset($animes[0]);
-        $animes = array_valies($animes);
+        $animes = array_values($animes);
 
         for($i = 0; $i < count($animes); $i++ ){
             $animes[$i][2] = rand(1999, 2030);

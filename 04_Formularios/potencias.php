@@ -36,10 +36,14 @@
         $base = $_POST["base"];
         $exponente = $_POST["exponente"];
         $res = 1;
-        for($i = 0; $i < $exponente; $i++){
-            $res *= $base;
+        if($base != '' and $exponente != ''){
+            for($i = 0; $i < $exponente; $i++){
+                $res *= $base;
+            }
+            echo "<h3>El resultado es: $res</h3>";
+        }else{
+            echo "<p>Te faltan datos</p>";
         }
-        echo "<h3>El resultado es: $res</h3>";
     }
     ?>
 </body>

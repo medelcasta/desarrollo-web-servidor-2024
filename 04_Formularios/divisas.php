@@ -29,25 +29,28 @@
         $origen = $_POST["origen"];
         $destino = $_POST["destino"];
         $conversion;
-
-        $conversion = match ($origen) {
-            "euro" => match($destino){
-                "dolar"=> $cantidad * 1.06 ,
-                "yen"=> $cantidad * 157.56,
-                "euro" => $cantidad,
-            },
-            "dolar" => match($destino){
-                "euro"=> $cantidad * 0.94,
-                "yen"=> $cantidad * 148.73,
-                "dolar" => $cantidad,
-            },
-            "yen"=> match($destino){
-                "euro"=>$cantidad * 0.0063,
-                "dolar"=> $cantidad * 0.0067,
-                "yen" => $cantidad,
-            },
-        };
-        echo "Son: " . $conversion;
+        if($cantidad != '' and $origen != '' and $conversion != ''){
+            $conversion = match ($origen) {
+                "euro" => match($destino){
+                    "dolar"=> $cantidad * 1.06 ,
+                    "yen"=> $cantidad * 157.56,
+                    "euro" => $cantidad,
+                },
+                "dolar" => match($destino){
+                    "euro"=> $cantidad * 0.94,
+                    "yen"=> $cantidad * 148.73,
+                    "dolar" => $cantidad,
+                },
+                "yen"=> match($destino){
+                    "euro"=>$cantidad * 0.0063,
+                    "dolar"=> $cantidad * 0.0067,
+                    "yen" => $cantidad,
+                },
+            };
+            echo "Son: " . $conversion;
+        }else{
+            echo "<p>FALTAN DATOS</p>";
+        }
     }
     ?>
 </body>

@@ -37,13 +37,19 @@
         if($edad >= 65){
             echo "<h1>$nombre se ha jubilado</h1>";
         }*/
-        $resultado = match(true){
-            $edad < 18 => "es menor de edad",
-            $edad >18 and $edad < 65 => "es mayor de edad",
-            $edad > 65 => "se ha jubilado",
-        };
-
-        echo "<h1>$nombre $resultado</h1>";
+        if($edad != '' and $nombre != ''){
+            $resultado = match(true){
+                $edad < 18 => "es menor de edad",
+                $edad >18 and $edad < 65 => "es mayor de edad",
+                $edad > 65 => "se ha jubilado",
+            };
+    
+            echo "<h1>$nombre $resultado</h1>";
+        }
+        else{
+            echo "<p>Te faltan datos</p>";
+        }
+        
     }
     ?>
 </body>

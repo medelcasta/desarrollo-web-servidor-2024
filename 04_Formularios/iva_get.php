@@ -18,7 +18,7 @@
         REDUCIDO = 10%
         SUPERREDUCIDO = 4%
     -->
-        <form action="" method="post">
+        <form action="" method="get">
             <label for="precio">Precio</label>
             <input type="text" name="precio" id="precio">
             <br><br>
@@ -31,10 +31,14 @@
         </form>
 
         <?php 
-        if($_SERVER["REQUEST_METHOD"] == "POST"){
-            $precio = $_POST["precio"];
-            $iva = $_POST["iva"];
+        //isset (is set) devuelve true si la variable existe
+        //por defecto $_get["precio"] por ejemplo no existe solo existe cuando se le da al boton
+        if(isset($_GET["precio"]) and isset($_GET["iva"])){
+            $precio = $_GET["precio"];
+            $iva = $_GET["iva"];
 
+            //var_dump($precio);
+            //var_dump($iva);
             if($precio != '' and $iva != ''){
                 $pvp = match($iva){
                     "general" => $precio * 1.21,
@@ -43,7 +47,7 @@
                 };
                 echo "<h1>El PVP seria: $pvp</h1>";
             }else{
-                echo "<h1>Te faltan datos</h1>";
+                echo "<p>Te faltan datos</p>";
             }
         }
         ?>

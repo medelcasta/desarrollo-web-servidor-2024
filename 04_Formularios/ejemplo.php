@@ -24,9 +24,14 @@
          * mostrar el mensaje tantas veces como indique el numero
          */
         $veces = $_POST["veces"];
-        for($i = 0; $i < $veces; $i++){
-            echo "<p>$mensaje</p>";
+        if($mensaje != '' and $veces != ''){
+            for($i = 0; $i < $veces; $i++){
+                echo "<p>$mensaje</p>";
+            }
+        }else{
+            echo "<p>Faltan datos</p>";
         }
+
     }
     ?>
 </body>
