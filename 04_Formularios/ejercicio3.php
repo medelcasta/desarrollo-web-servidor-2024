@@ -35,27 +35,31 @@
             $menor = $num1;
             $mayor = $num2;
         }
-        echo "Los numeros primos son: ";
-        for($j = $menor; $j<= $mayor; $j++){
-            if ($j == 2){
-                echo $j . " ";
-                $cont++;  
-            }
-            else{   
-                for($i = $menor; $i < $j; $i++){
-                    if($j % $i == 0){
-                        $esPrimo = false;
-                        break;
-                    }
-                }
-                if($esPrimo){
+        if($num1 != '' and $num2 != ''){
+            echo "Los numeros primos son: ";
+            for($j = $menor; $j<= $mayor; $j++){
+                if ($j == 2){
                     echo $j . " ";
-                    $cont++;
+                    $cont++;  
                 }
-                else{
-                    $esPrimo = true;
-                }
-            }        
+                else{   
+                    for($i = $menor; $i < $j; $i++){
+                        if($j % $i == 0){
+                            $esPrimo = false;
+                            break;
+                        }
+                    }
+                    if($esPrimo){
+                        echo $j . " ";
+                        $cont++;
+                    }
+                    else{
+                        $esPrimo = true;
+                    }
+                }        
+            }
+        }else{
+            echo "<p>Falta información</p>";
         }
     }
     ?>

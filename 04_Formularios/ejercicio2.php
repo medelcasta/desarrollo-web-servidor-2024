@@ -30,23 +30,26 @@
         $inicio = 1;
         $fin = 1;
         $resultado = [];
-
-        if($a > $b){
-            $inicio = $b;
-            $fin = $a;
-        }else{
-            $inicio = $a;
-            $fin = $b;
-        }
-        
-        for($i = $inicio; $i <= $fin; $i++){
-            if($i % $c == 0){
-                $resultado[] = $i;
+        if($a != '' and $b != '' and $c != ''){
+            if($a > $b){
+                $inicio = $b;
+                $fin = $a;
+            }else{
+                $inicio = $a;
+                $fin = $b;
             }
-        }
-        echo"Los multiplos son: ";
-        for($i = 0; $i <= count($resultado); $i++){
-            echo $resultado[$i]. " ";
+            
+            for($i = $inicio; $i <= $fin; $i++){
+                if($i % $c == 0){
+                    $resultado[] = $i;
+                }
+            }
+            echo"Los multiplos son: ";
+            for($i = 0; $i <= count($resultado); $i++){
+                echo $resultado[$i]. " ";
+            }
+        }else{
+            echo "<p>Falta información</p>";
         }
     }
     ?>

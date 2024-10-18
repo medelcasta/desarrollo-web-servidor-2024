@@ -17,15 +17,18 @@
         <input type="submit" value="calcular">
     </form>
 
-    <?php 
-                
+    <?php         
                 if($_SERVER["REQUEST_METHOD"] == "POST"){
                     $numero =(int) $_POST["numero"];
                     if($numero != ''){
                         for($i = 1; $i<= 10; $i++){ 
                             //hago un array para almacenar los resultados de la multiplicacion
                             $resultados[$i] = $numero *$i;
-                        } ?>
+                        } 
+                    }else{
+                        echo "<p>Falta información</p>";
+                    }
+                        ?>
                         <table border=2>
                             <thead>
                                 <tr>
@@ -57,9 +60,7 @@
                         </table>
                     
                 <?php
-                    }else{
-                        
-                    }
+                    
                 }
                 ?>
             </tr>

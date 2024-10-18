@@ -31,25 +31,28 @@
         $origen = $_POST["origen"];
         $destino = $_POST["destino"];
         $conversion;
-
-        $conversion = match ($origen) {
-            "celsius" => match($destino){
-                "fahrenheit"=> ($temp * (9/5)) +32,
-                "kelvin"=> $temp + 273,
-                "celsius" => $temp,
-            },
-            "fahrenheit" => match($destino){
-                "celsius"=> ($temp - 32) * (5/9),
-                "kelvin"=> ($temp -32) * (5/9) + 273,
-                "fahrenheit" => $temp,
-            },
-            "kelvin"=> match($destino){
-                "celsius"=>$temp - 273,
-                "fahrenheit"=> ($temp -273) * (9/5) + 32,
-                "kelvin" => $temp,
-            },
-        };
-        echo "Resultado: " .$conversion;
+        if($temp != '' and $origen != '' and $destino != ''){
+            $conversion = match ($origen) {
+                "celsius" => match($destino){
+                    "fahrenheit"=> ($temp * (9/5)) +32,
+                    "kelvin"=> $temp + 273,
+                    "celsius" => $temp,
+                },
+                "fahrenheit" => match($destino){
+                    "celsius"=> ($temp - 32) * (5/9),
+                    "kelvin"=> ($temp -32) * (5/9) + 273,
+                    "fahrenheit" => $temp,
+                },
+                "kelvin"=> match($destino){
+                    "celsius"=>$temp - 273,
+                    "fahrenheit"=> ($temp -273) * (9/5) + 32,
+                    "kelvin" => $temp,
+                },
+            };
+            echo "Resultado: " .$conversion;
+        }else {
+            echo "<p>falta información</p>";
+        }
     }
     ?>
 </body>

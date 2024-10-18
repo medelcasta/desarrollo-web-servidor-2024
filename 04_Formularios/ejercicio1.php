@@ -28,23 +28,27 @@
         $num2 = $_POST["num2"];
         $num3 = $_POST["num3"];
         $mayor = $num1;
+        if($num1 != '' and $num2 != '' and $num3 != ''){
+            if($num2 > $max){
+                $max = $num2;
+            }
 
-        if($num2 > $max){
-            $max = $num2;
+            if($num3 > $max){
+                $max = $num3;
+            }
+
+            /*$mayor = match(true){   
+                $num1 >= $num2 and $num1 >= $num2 => $num1,
+                $num2 >= $num1 and $num2 >= $num3 => $num2,
+                $num3 >= $num1 and $num3 >= $num2 => $num3,
+                
+            };*/
+            echo "<p>El mayor es $mayor</p>";
+        }else {
+            echo "<p>Falta informacións</p>";
         }
-
-        if($num3 > $max){
-            $max = $num3;
-        }
-
-        /*$mayor = match(true){   
-            $num1 >= $num2 and $num1 >= $num2 => $num1,
-            $num2 >= $num1 and $num2 >= $num3 => $num2,
-            $num3 >= $num1 and $num3 >= $num2 => $num3,
-            
-        };*/
-        echo "<p>El mayor es $mayor</p>";
     }
+
     
     ?>
 </body>
