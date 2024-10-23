@@ -8,8 +8,8 @@
         error_reporting( E_ALL );
         ini_set("display_errors", 1 );  
         
-        require('../05-funciones/temperaturas.php');
-        require('../05-funciones/edades.php');
+        require('../05_funciones/temperaturas.php');
+        require('../05_funciones/edades.php');
     ?>
 </head>
 <body>
@@ -58,10 +58,41 @@
             $temperatura = $_POST["temperatura"];
             $inicial = $_POST["inicial"];
             $final = $_POST["final"];
+            
+            if($temperatura != ''){
+                if(is_numeric($temperatura)){
+                    if($inicial == "C" and $temperatura >= -273.15){
+                        //correcto
+                        echo convertirTemperatura($temperatura, $inicial, $final);
+                    }elseif($inicial == "C" and $temperatura < -273.15) {
+                        echo "<p>La temperatura no puede ser inferior a -273.15 C</p>";
+                    }
+                    if($inicial == "K" and $temperatura >= 0){
+                        //correcto
+                        echo convertirTemperatura($temperatura, $inicial, $final);
+                    }elseif($inicial == "K" and $temperatura < 0){
+                        echo "<p>La temperatura no puede ser inferior a 0 K</p>";
+                    }
+                    if($inicial == "F" and $temperatura >= -459.67){
+                        //correcto
+                        echo convertirTemperatura($temperatura, $inicial, $final);
+                    }elseif($inicial == "F" and $temperatura >= -459.67){
+                        echo "<p>La temperatura no puede ser inferior a -459.67 F</p>";
+                    }
+                    
+                }else{
+                    echo "<p>La temperatura debe ser un numero</p>";
+                }
+            }else{
+                echo "<p>Falta la temperatura</p>";
+            }
 
-            convertirTemperatura($temperatura, $inicial, $final);
+            
         }
     }
+    //en otro fichero nuevo, poner todos los demas formularios y hacerlo con funciones
     ?>
+
+    
 </body>
 </html>

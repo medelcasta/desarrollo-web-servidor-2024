@@ -10,7 +10,7 @@
     ?>
 </head>
 <body>
-<form action="" method="post">
+    <form action="" method="post">
         <label for="base">Base</label>
         <input type="text" name="base" id="base" placeholder="Introduce la base">
         <label for="exponente">Exponente</label>

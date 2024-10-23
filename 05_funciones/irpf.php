@@ -35,7 +35,7 @@ function salario($bruto){
 
     $misueldo = $bruto - $impuesto;
 
-    echo "<p>TU SUELDO NETO QUEDA EN: $misueldo</p>";
+    return $misueldo;
 }
 
 ?>
