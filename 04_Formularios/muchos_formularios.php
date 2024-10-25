@@ -147,6 +147,7 @@
         <input type="text" name="precio" id="precio">
         <br><br>
         <select name="iva">
+            <option>--- Elige un tipo de IVA ---</option>
             <option value="GENERAL">General</option>
             <option value="REDUCIDO">Reducido</option>
             <option value="SUPERREDUCIDO">Superreducido</option>
