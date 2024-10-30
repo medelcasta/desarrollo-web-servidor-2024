@@ -62,7 +62,7 @@
                     $err_apellido1 = "El 1º apellido debe tener entre 2 y 60 caracteres";
                 } else {
                     $patron = "/^[a-zA-Z áéíóúÁÉÍÓÚñÑüÜ]+$/";
-                    if (!preg_match(pattern: $patron, $tmp_1apellido)) {
+                    if (!preg_match( $patron, $tmp_1apellido)) {
                         $err_apellido1 = "El 1º apellido solo puede contener letras y espacios en blanco";
                     } else {
                         $apellido1 = $tmp_1apellido;
