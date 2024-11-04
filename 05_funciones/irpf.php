@@ -6,7 +6,7 @@
     define("TRAMO4", (24800 * 0.37));
     define("TRAMO5", (240000 * 0.45));
 
-function salario($bruto){
+function salario(int|float $bruto) : float{
     $impuesto;
     $res;
         

@@ -1,6 +1,6 @@
 <?php 
 
-function calcularPrimos($num1, $num2){
+function calcularPrimos(int $num1, int $num2): string{
     if($num1 > $num2){
         $menor = $num2;
         $mayor = $num1;
@@ -11,7 +11,7 @@ function calcularPrimos($num1, $num2){
     echo "Los numeros primos son: ";
     for($j = $menor; $j<= $mayor; $j++){
         if ($j == 2){
-            echo $j . " ";
+            return $j . " ";
             $cont++;  
         }
         else{   
@@ -22,7 +22,7 @@ function calcularPrimos($num1, $num2){
                 }
             }
             if($esPrimo){
-                echo $j . " ";
+                return $j . " ";
                 $cont++;
             }
             else{
