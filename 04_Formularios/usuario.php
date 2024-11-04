@@ -79,10 +79,11 @@
                             }
                         }
                     } 
-                    if($anio_ac - $anio > 121){
-                        $err_fecha_nacimiento = "NO puede tener mas de 121 años";
-                    }else if ($anio_ac - $anio < 121){
-                        $fecha_nacimiento = $tmp_fecha_nacimiento;
+                    elseif($anio_ac - $anio > 120 || ($anio_ac - $anio == 120 && ($mes_ac > $mes || ($mes_ac == $mes && $dia_ac >= $dia)))){
+                        $err_fecha_nacimiento = "No puede tener más de 120 años"; 
+                    } 
+                    else { 
+                        $fecha_nacimiento = $tmp_fecha_nacimiento; 
                     }
                     
                 }
