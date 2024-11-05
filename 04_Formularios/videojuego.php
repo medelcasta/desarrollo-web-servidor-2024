@@ -72,13 +72,12 @@ PATRON PARA VALIDAR ALGO
                     $fecha_actual = new DateTime(); 
                     $fecha_actual->modify('+5 years'); 
                     $fecha_max = $fecha_actual->format('Y-m-d');
-                    echo $fecha_futura;
                     list($anno_max,$mes_max,$dia_max) = explode('-',$fecha_max);
                     list($anno,$mes,$dia) = explode('-',$tmp_fecha_lanzamiento);
 
-                    if($anno_max - $anno < 77) {
+                    if($anno < 1947) {
                         $err_fecha_lanzamiento = "No puede ser Anterior a 1947";
-                    } elseif($anno_max - $anno == 77) {
+                    } elseif($anno == 1947) {
                         if($mes_max - $mes < 0) {
                             $err_fecha_lanzamiento = "No puede ser Anterior a 1947";
                         } elseif($mes_max - $mes == 0) {
@@ -99,7 +98,7 @@ PATRON PARA VALIDAR ALGO
                             if($dia_max - $dia >= 0) {
                                 $err_fecha_lanzamiento = "No puede para mas de 5 años";
                             } else {
-                                $err_fecha_lanzamiento = $tmp_fecha_lanzamiento;
+                                $fecha_lanzamiento = $tmp_fecha_lanzamiento;
                             }
                         } elseif($mes_max - $mes < 0) {
                             $fecha_lanzamiento = $tmp_fecha_lanzamiento;
@@ -114,12 +113,22 @@ PATRON PARA VALIDAR ALGO
             if(!is_numeric($pegi_trans)){
                 $err_pegi = "Pegi es un valor numerico";
             }else{
-                if($tmp_pegi == 3 ||$tmp_pegi == 5 || $tmp_pegi == 7 || $tmp_pegi == 12 || $tmp_pegi == 16 || $tmp_pegi == 18 ){
+                if($tmp_pegi == "tres" ||$tmp_pegi == "cinco" || $tmp_pegi == "sieta" || $tmp_pegi == "doce" || $tmp_pegi == "dieciseis" || $tmp_pegi == "dieciocho"){
                     $pegi = $tmp_pegi;
                 }else{
                     $err_pegi = "Pegi incorrecto";
                 }
                 
+            }
+
+            if(!empty($tmp_descripcion)){
+                if(strlen($tmp_descripcion) < 0 || strlen($tmp_descripcion) > 255) {
+                    $err_descripcion = "La descripcion debe tener entre 0 y 255 caracteres";
+                } else {
+                    $descripcion = $tmp_descripcion;
+                } 
+            }else{
+                $descripcion = "No contiene descripcion.";
             }
         }
     ?>
@@ -180,12 +189,13 @@ PATRON PARA VALIDAR ALGO
         </div>
     </form>
     <?php
-        if(isset($titulo) && isset($consola) && isset($fecha_lanzamiento)) { ?>
+        if(isset($titulo) && isset($consola) && isset($fecha_lanzamiento) && isset($descripcion)) { ?>
             <h4>Datos Recogidos</h4>
             <p><?php echo $titulo ?></p>
             <p><?php echo $consola ?></p>
             <p><?php echo $fecha_lanzamiento ?></p>
             <p><?php echo $pegi ?></p>
+            <p><?php echo $descripcion ?></p>
         <?php } ?>
 </body>
 </html>
