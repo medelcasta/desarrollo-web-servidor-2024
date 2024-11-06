@@ -41,7 +41,7 @@ PATRON PARA VALIDAR ALGO
         if($_SERVER["REQUEST_METHOD"] == "POST"){
             $tmp_titulo = depurar($_POST["titulo"]);
            //$tmp_consola = depurar($_POST["consola"]);
-            $tmp_fecha_lanzamiento= depurar($_POST["fecha_lanzamiento"]);
+            $tmp_fecha_lanzamiento = depurar($_POST["fecha_lanzamiento"]);
             $tmp_pegi = depurar($_POST["pegi"]);
             $tmp_descripcion = depurar($_POST["descripcion"]);
 
@@ -55,11 +55,22 @@ PATRON PARA VALIDAR ALGO
                 } 
             }
 
+            //Para coger el radio button (nos aseguramos que no este vacio)
             if (isset($_POST['consola'])) { 
                 $tmp_consola =depurar($_POST['consola']); 
-                $consola = $tmp_consola; 
             } else { 
-                $err_consola = "No has seleccionado ninguna consola."; 
+                $tmp_consola = "";
+            }
+
+            if($tmp_consola == ''){
+                $err_consola = "La consola es obligatoria";
+            }else{
+                $consola_validas = ["PS5", "PS4", "NintendoSwitch", "XboxSeriesX/S"];
+                if(!in_array($tmp_consola, $consola_validas)){
+                    $err_consola = "La consola no es valida";
+                }else{
+                    $consola = $tmp_consola;
+                }
             }
 
             if($tmp_fecha_lanzamiento == '') {
@@ -69,42 +80,34 @@ PATRON PARA VALIDAR ALGO
                 if(!preg_match($patron, $tmp_fecha_lanzamiento)) {
                     $err_fecha_lanzamiento = "Formato de fecha incorrecto";
                 } else {
-                    $fecha_actual = new DateTime(); 
-                    $fecha_actual->modify('+5 years'); 
-                    $fecha_max = $fecha_actual->format('Y-m-d');
+                    
                     list($anno_max,$mes_max,$dia_max) = explode('-',$fecha_max);
                     list($anno,$mes,$dia) = explode('-',$tmp_fecha_lanzamiento);
 
                     if($anno < 1947) {
                         $err_fecha_lanzamiento = "No puede ser Anterior a 1947";
-                    } elseif($anno == 1947) {
-                        if($mes_max - $mes < 0) {
-                            $err_fecha_lanzamiento = "No puede ser Anterior a 1947";
-                        } elseif($mes_max - $mes == 0) {
-                            if($dia_max - $dia < 0) {
-                                $err_fecha_lanzamiento = "No puede ser Anterior a 1947";
-                            } else {
-                                $fecha_lanzamiento = $tmp_fecha_lanzamiento;
-                            }
-                        } elseif($mes_max- $mes > 0) {
+                    } else {
+                        $anno_actual = date("Y");
+                        $mes_actual = date("m");
+                        $dia_actual = date("d");
+
+                        if($anno - $anno_actual < 5){
                             $fecha_lanzamiento = $tmp_fecha_lanzamiento;
-                        } 
-                    } elseif($anno_max - $anno > 5) {
-                        $err_fecha_nacimiento = "No puede para mas de 5 años";
-                    } elseif($anno_max - $anno == 5) {
-                        if($mes_max - $mes > 0) {
-                            $err_fecha_lanzamiento = "No puede para mas de 5 años";
-                        } elseif($mes_max - $mes == 0) {
-                            if($dia_max - $dia >= 0) {
-                                $err_fecha_lanzamiento = "No puede para mas de 5 años";
-                            } else {
+                        }elseif($anno - $anno_actual > 5){
+                            $err_fecha_lanzamiento = "La fecha debe ser anterior a 5 años";
+                        }elseif($anno - $anno_actual == 5){
+                            if($mes - $mes_actual < 0){
                                 $fecha_lanzamiento = $tmp_fecha_lanzamiento;
+                            }elseif($mes - $mes_actual > 0){
+                                $err_fecha_lanzamiento = "La fecha debe ser anterior a dentro de 5 años";
+                            }elseif($mes - $mes_actual == 0){
+                                if($dia - $dia_actual > 0){
+                                    $fecha_lanzamiento = $tmp_fecha_lanzamiento;
+                                }elseif($dia - $dia_actual > 0){
+                                    $err_fecha_lanzamiento = "La fecha debe ser anterior a dentro de 5 años";
+                                }
                             }
-                        } elseif($mes_max - $mes < 0) {
-                            $fecha_lanzamiento = $tmp_fecha_lanzamiento;
-                        } 
-                    }else{
-                        $fecha_lanzamiento = $tmp_fecha_lanzamiento;
+                        }
                     }
                 } 
             }
@@ -121,15 +124,11 @@ PATRON PARA VALIDAR ALGO
                 
             }
 
-            if(!empty($tmp_descripcion)){
-                if(strlen($tmp_descripcion) < 0 || strlen($tmp_descripcion) > 255) {
+            if(strlen($tmp_descripcion) < 0 || strlen($tmp_descripcion) > 255) {
                     $err_descripcion = "La descripcion debe tener entre 0 y 255 caracteres";
-                } else {
-                    $descripcion = $tmp_descripcion;
-                } 
-            }else{
-                $descripcion = "No contiene descripcion.";
-            }
+            } else {
+                +$descripcion = $tmp_descripcion;
+            } 
         }
     ?>
     <form action="" method="post">
@@ -141,26 +140,22 @@ PATRON PARA VALIDAR ALGO
         </div>
         <div>
             <label>Tipo de Consola</label>
-                <br>
-                <label> 
-                    <input type="radio" name="consola" value="Nintendo Switch">
-                    Nintendo Switch 
-                </label>
-                <br> 
-                <label> 
+                <div class="form-check">
+                    <input type="radio" name="consola" value="NintendoSwitch">
+                    <label>Nintendo Switch</label>
+                </div>
+                <div class="form-check">
                     <input type="radio" name="consola" value="PS5">
-                    PS5 
-                </label>
-                <br> 
-                <label> 
+                    <label>PS5</label>
+                </div>
+                <div class="form-check">
                     <input type="radio" name="consola" value="PS4">
-                    PS4 
-                </label>
-                <br> 
-                <label> 
-                    <input type="radio" name="consola" value="Xbox Series X/S">
-                    Xbox Series X/S
-                </label>
+                    <label>PS4</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" name="consola" value="XboxSeriesX/S">
+                    <label>Xbox Series X/S</label>
+                </div>
             <?php if(isset($err_consola)) echo "<span class='error'>$err_consola</span>" ?>
         </div>
         <div>
