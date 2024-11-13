@@ -7,8 +7,6 @@
     define("TRAMO5", (240000 * 0.45));
 
 function salario(int|float $bruto) : float{
-    $impuesto;
-    $res;
         
     if($bruto < 12450){
         $impuesto = 12450 * 0.19;

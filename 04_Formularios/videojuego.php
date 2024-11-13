@@ -57,7 +57,12 @@ PATRON PARA VALIDAR ALGO
 
             //Para coger el radio button (nos aseguramos que no este vacio)
             if (isset($_POST['consola'])) { 
+<<<<<<< HEAD
                 $tmp_consola =depurar($_POST['consola']); 
+=======
+                $tmp_consola = depurar($_POST['consola']); 
+                $consola = $tmp_consola; 
+>>>>>>> 2de461a (ejercicos)
             } else { 
                 $tmp_consola = "";
             }
@@ -73,6 +78,7 @@ PATRON PARA VALIDAR ALGO
                 }
             }
 
+<<<<<<< HEAD
             if($tmp_fecha_lanzamiento == '') {
                 $err_fecha_lanzamiento = "La fecha de lanzamiento es obligatoria";
             } else {
@@ -111,6 +117,9 @@ PATRON PARA VALIDAR ALGO
                     }
                 } 
             }
+=======
+            
+>>>>>>> 2de461a (ejercicos)
 
             $pegi_trans = (int)$tmp_pegi;
             if(!is_numeric($pegi_trans)){
@@ -122,6 +131,42 @@ PATRON PARA VALIDAR ALGO
                     $err_pegi = "Pegi incorrecto";
                 }
                 
+            }
+            if($tmp_fecha_lanzamiento == '') {
+                $err_fecha_lanzamiento = "La fecha de lanzamiento es obligatoria";
+            } else {
+                $patron = "/^[0-9]{4}\-[0-9]{2}\-[0-9]{2}$/";
+                if(!preg_match($patron, $tmp_fecha_lanzamiento)) {
+                    $err_fecha_lanzamiento = "Formato de fecha incorrecto";
+                } else {
+                    list($anno_lanzamiento,$mes_lanzamiento,$dia_lanzamiento) =
+                        explode('-',$tmp_fecha_lanzamiento);
+                    if($anno_lanzamiento < 1947) {
+                        $err_fecha_lanzamiento = "El año no puede ser anterior a 1947";
+                    } else {
+                        $anno_actual = date("Y");
+                        $mes_actual = date("m");
+                        $dia_actual = date("d");
+    
+                        if($anno_lanzamiento - $anno_actual < 5) {
+                            $fecha_lanzamiento = $tmp_fecha_lanzamiento;
+                        } elseif($anno_lanzamiento - $anno_actual > 5) {
+                            $err_fecha_lanzamiento = "La fecha debe ser anterior a dentro de 5 años";
+                        } elseif($anno_lanzamiento - $anno_actual == 5) {
+                            if($mes_lanzamiento - $mes_actual < 0) {
+                                $fecha_lanzamiento = $tmp_fecha_lanzamiento;
+                            } elseif($mes_lanzamiento - $mes_actual > 0) {
+                                $err_fecha_lanzamiento = "La fecha debe ser anterior a dentro de 5 años";
+                            } elseif($mes_lanzamiento - $mes_actual == 0) {
+                                if($dia_lanzamiento - $dia_actual <= 0) {
+                                    $fecha_lanzamiento = $tmp_fecha_lanzamiento;
+                                } elseif($dia_lanzamiento - $dia_actual > 0) {
+                                    $err_fecha_lanzamiento = "La fecha debe ser anterior a dentro de 5 años";
+                                }
+                            }
+                        }
+                    }
+                }
             }
 
             if(strlen($tmp_descripcion) < 0 || strlen($tmp_descripcion) > 255) {
