@@ -57,12 +57,8 @@ PATRON PARA VALIDAR ALGO
 
             //Para coger el radio button (nos aseguramos que no este vacio)
             if (isset($_POST['consola'])) { 
-<<<<<<< HEAD
                 $tmp_consola =depurar($_POST['consola']); 
-=======
-                $tmp_consola = depurar($_POST['consola']); 
-                $consola = $tmp_consola; 
->>>>>>> 2de461a (ejercicos)
+
             } else { 
                 $tmp_consola = "";
             }
@@ -78,7 +74,7 @@ PATRON PARA VALIDAR ALGO
                 }
             }
 
-<<<<<<< HEAD
+
             if($tmp_fecha_lanzamiento == '') {
                 $err_fecha_lanzamiento = "La fecha de lanzamiento es obligatoria";
             } else {
@@ -117,9 +113,9 @@ PATRON PARA VALIDAR ALGO
                     }
                 } 
             }
-=======
+
             
->>>>>>> 2de461a (ejercicos)
+
 
             $pegi_trans = (int)$tmp_pegi;
             if(!is_numeric($pegi_trans)){
