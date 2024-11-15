@@ -74,59 +74,15 @@ PATRON PARA VALIDAR ALGO
                 }
             }
 
-
-            if($tmp_fecha_lanzamiento == '') {
-                $err_fecha_lanzamiento = "La fecha de lanzamiento es obligatoria";
-            } else {
-                $patron = "/^[0-9]{4}\-[0-9]{2}\-[0-9]{2}$/";
-                if(!preg_match($patron, $tmp_fecha_lanzamiento)) {
-                    $err_fecha_lanzamiento = "Formato de fecha incorrecto";
-                } else {
-                    
-                    list($anno_max,$mes_max,$dia_max) = explode('-',$fecha_max);
-                    list($anno,$mes,$dia) = explode('-',$tmp_fecha_lanzamiento);
-
-                    if($anno < 1947) {
-                        $err_fecha_lanzamiento = "No puede ser Anterior a 1947";
-                    } else {
-                        $anno_actual = date("Y");
-                        $mes_actual = date("m");
-                        $dia_actual = date("d");
-
-                        if($anno - $anno_actual < 5){
-                            $fecha_lanzamiento = $tmp_fecha_lanzamiento;
-                        }elseif($anno - $anno_actual > 5){
-                            $err_fecha_lanzamiento = "La fecha debe ser anterior a 5 años";
-                        }elseif($anno - $anno_actual == 5){
-                            if($mes - $mes_actual < 0){
-                                $fecha_lanzamiento = $tmp_fecha_lanzamiento;
-                            }elseif($mes - $mes_actual > 0){
-                                $err_fecha_lanzamiento = "La fecha debe ser anterior a dentro de 5 años";
-                            }elseif($mes - $mes_actual == 0){
-                                if($dia - $dia_actual > 0){
-                                    $fecha_lanzamiento = $tmp_fecha_lanzamiento;
-                                }elseif($dia - $dia_actual > 0){
-                                    $err_fecha_lanzamiento = "La fecha debe ser anterior a dentro de 5 años";
-                                }
-                            }
-                        }
-                    }
-                } 
-            }
-
-            
-
-
-            $pegi_trans = (int)$tmp_pegi;
-            if(!is_numeric($pegi_trans)){
+            if(!is_numeric($tmp_pegi)){
                 $err_pegi = "Pegi es un valor numerico";
             }else{
-                if($tmp_pegi == "tres" ||$tmp_pegi == "cinco" || $tmp_pegi == "sieta" || $tmp_pegi == "doce" || $tmp_pegi == "dieciseis" || $tmp_pegi == "dieciocho"){
+                $valid_pegi_values = ["3", "5", "7", "12", "16", "18"];
+                if(in_array($tmp_pegi, $valid_pegi_values)){
                     $pegi = $tmp_pegi;
-                }else{
+                } else {
                     $err_pegi = "Pegi incorrecto";
-                }
-                
+                }      
             }
             if($tmp_fecha_lanzamiento == '') {
                 $err_fecha_lanzamiento = "La fecha de lanzamiento es obligatoria";
@@ -168,7 +124,7 @@ PATRON PARA VALIDAR ALGO
             if(strlen($tmp_descripcion) < 0 || strlen($tmp_descripcion) > 255) {
                     $err_descripcion = "La descripcion debe tener entre 0 y 255 caracteres";
             } else {
-                +$descripcion = $tmp_descripcion;
+                $descripcion = $tmp_descripcion;
             } 
         }
     ?>
@@ -207,11 +163,11 @@ PATRON PARA VALIDAR ALGO
         <div>
             <label>PEGI</label>
             <select name="pegi"> 
-                <option value="tres">3</option> 
-                <option value="siete">7</option> 
-                <option value="doce">12</option> 
-                <option value="dieciseis">16</option> 
-                <option value="dieciocho">18</option> 
+                <option value="3">3</option> 
+                <option value="7">7</option> 
+                <option value="12">12</option> 
+                <option value="16">16</option> 
+                <option value="18">18</option> 
             </select>
             <?php if(isset($err_pegi)) echo "<span class='error'>$err_pegi</span>" ?>
         </div>

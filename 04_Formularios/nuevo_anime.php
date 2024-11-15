@@ -42,14 +42,24 @@
                 $nombre_estudio = $tmp_nombre_estudio;
                 
             }
-
-            if(!filter_var($tmp_anno_estreno, FILTER_VALIDATE_INT)){
-                $err_anno_estreno = "El año de estreno es un campo obligatorio";
+            if(isset($_POST["anno_estreno"])){
+                $tmp_anno_estreno = depurar($_POST["anno_estreno"]);
             }else{
-                if($tmp_anno_estreno < 1960 || $tmp_anno_estreno > 2029){
-                    $err_anno_estreno = "El año de estreno debe estar entre 1960 y 2029";
+                $tmp_anno_estreno = '';
+            }
+
+            if($tmp_anno_estreno == ''){
+                $anno_estreno = "Sin informacion";
+            }else{
+                if(!filter_var($tmp_anno_estreno, FILTER_VALIDATE_INT)){
+                    $err_anno_estreno = "El año de estreno debe ser numerico";
                 }else{
-                    $anno_estreno = $tmp_anno_estreno;
+
+                    if($tmp_anno_estreno < 1960 || $tmp_anno_estreno > date("Y") + 5){
+                        $err_anno_estreno = "El año de estreno debe estar entre 1960 y 2029";
+                    }else{
+                        $anno_estreno = $tmp_anno_estreno;
+                    }
                 }
             }
 
