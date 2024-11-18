@@ -7,7 +7,14 @@
     <?php
         error_reporting( E_ALL );
         ini_set("display_errors", 1 );  
-        require('../05_funciones/depurar.php');
+        
+        function depurar($entrada) : string {
+            $salida = htmlspecialchars($entrada);
+            $salida = trim($salida);
+            $salida = stripslashes($salida);
+            $salida = preg_replace('!\s+!', ' ', $salida);
+            return $salida;
+        }
     ?>
     <style>
         .error {

@@ -86,7 +86,7 @@
         }
 
         if($tmp_titulo == ''){
-            $err_titulo = "La titulo es obligatoria";
+            $err_titulo = "El titulo es obligatoria";
         }else{
             $titulo_validos = ["si", "no"];
             if(!in_array($tmp_titulo, $titulo_validos)){
@@ -124,7 +124,7 @@
                 if($anno_fundacion < 1889){
                     $err_fecha_fundacion = "El año no puede ser anterior a 1889";
                 }
-                elseif($anno_fundacion > 1889 && $anno_fundacion > $anno_actual){
+                elseif($anno_fundacion > 1889 && $anno_fundacion < $anno_actual){
                     $fecha_fundacion = $tmp_fecha_fundacion;
                 }
                 elseif($anno_fundacion > $anno_actual){
