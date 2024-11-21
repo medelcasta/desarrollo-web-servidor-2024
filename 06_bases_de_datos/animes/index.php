@@ -16,6 +16,12 @@
     <div class="container">
         <h1>Tabla de animes</h1>
         <?php 
+            if($_SERVER["REQUEST_METHOD"] == "POST"){
+                $id_anime = $_POST["id_anime"];
+                //borrar el anime
+                $sql = "DELETE FROM animes WHERE id_anime = $id_anime";
+                $_conexion -> query($sql);
+            }
             $sql = "SELECT * FROM animes";
             $resultado = $_conexion -> query($sql); 
             /**
@@ -25,6 +31,7 @@
              * El resultado se almacena $resultado, que es un objeto 
              * con una estructura parecida a los arrays 
              */
+
         ?>
         <a class="btn btn-secondary" href="nuevo_anime.php">Crear nuevo anime</a>
         <br><br>
@@ -37,6 +44,8 @@
                     <th>Año</th>
                     <th>Numero de temporadas</th>
                     <th>Imagen</th>
+                    <th></th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -48,13 +57,20 @@
                         echo "<td>" . $fila["anno_estreno"] ."</td>";
                         echo "<td>" . $fila["num_temporadas"] ."</td>";
                         ?>
-
                         <td>
                             <img width="100" height="200" src="<?php echo $fila["imagen"] ?> ">
                         </td>
+                        <td>
+                            <a class="btn btn-primary"  href="ver_anime.php?id_anime=<?php echo $fila["id_anime"] ?>">Editar</a>
+                        </td>
+                        <td>
+                            <form action="" method="post">
+                                <input type="hidden" name="id_anime" value="<?php echo $fila["id_anime"] ?>" > <!--COGENOS EL ID-->
+                                <input class="btn btn-danger" type="submit" value="Borrar">
+                            </form>
+                        </td>
                         <?php
                         echo "</tr>";
-            
                     }
                 ?>
             </tbody>
