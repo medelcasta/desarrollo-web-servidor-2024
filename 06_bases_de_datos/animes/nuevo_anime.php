@@ -50,11 +50,11 @@
                 <input class="form-control" type="text" name="titulo">
             </div>
             <div class="mb-3">
-                <label class="form-label">Nombre estudio</label>
-                <input class="form-control" type="text" name="nombre_estudio">
+                <label class="form-label">Año estreno</label>
+                <input class="form-control" type="text" name="anno_estreno">
             </div>
             <div class="mb-3">
-                <label class="form-label">Año estreno</label>
+                <label class="form-label">Nombre estudio</label>
                 <select class="form-select" name="nombre_estudio">
                     <option value="" selected disabled hidden>--Elige el estudio--</option>
                     <?php 
