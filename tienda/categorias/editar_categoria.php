@@ -19,7 +19,6 @@
         while($fila = $resultado -> fetch_assoc()) {
             $categoria = $fila["categoria"];
             $descripcion = $fila["descripcion"];
-            $categoria_original = $_POST["categoria_original"];
         }
 
         $sql = "SELECT * FROM categorias ORDER BY categoria";
@@ -32,8 +31,7 @@
 
             $sql = "UPDATE categorias SET
                 categoria = '$categoria',
-                descripcion = '$descripcion'
-                WHERE categoria = '$categoria_original'";
+                descripcion = '$descripcion' 
             ";
 
             $_conexion -> query($sql);
