@@ -19,7 +19,7 @@
             if($_SERVER["REQUEST_METHOD"] == "POST"){
                 $categoria = $_POST["categoria"];
                 //borrar la categoria
-                $sql = "DELETE FROM categorias WHERE categoria = $categoria";
+                $sql = "DELETE FROM categorias WHERE categoria ='$categoria'";
                 $_conexion -> query($sql);
             }
             $sql = "SELECT * FROM categorias";

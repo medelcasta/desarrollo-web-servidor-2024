@@ -13,12 +13,13 @@
         <?php
 
         $categoria = $_GET["categoria"];
-        $sql = "SELECT * FROM categoriass WHERE categoria = $categoria";
+        $sql = "SELECT * FROM categorias WHERE categoria = '$categoria'";
         $resultado = $_conexion -> query($sql);
         echo "<h1>ESTOY AQUI</h1>";
         while($fila = $resultado -> fetch_assoc()) {
             $categoria = $fila["categoria"];
             $descripcion = $fila["descripcion"];
+            $categoria_original = $_POST["categoria_original"];
         }
 
         $sql = "SELECT * FROM categorias ORDER BY categoria";
@@ -31,8 +32,8 @@
 
             $sql = "UPDATE categorias SET
                 categoria = '$categoria',
-                descripcion = '$descripcion',
-                WHERE categoria = $categoria
+                descripcion = '$descripcion'
+                WHERE categoria = '$categoria_original'";
             ";
 
             $_conexion -> query($sql);
